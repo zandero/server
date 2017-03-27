@@ -10,6 +10,10 @@ public enum UserRole {
 	User(0),
 	Admin(10); // Admin is also a User ...
 
+	/**
+	 * Level defines privilege order ...
+	 * the higher the more privileges user has
+	 */
 	private final int userLevel;
 
 	UserRole(int level) {

@@ -14,11 +14,10 @@ public class SessionServiceImpl implements SessionService {
 
 	// configure static user storage
 	private static List<User> users;
-
 	{
 		users = new ArrayList<>();
-		users.add(new User("lojz", "password", "Lojze Lojzasti", UserRole.Admin));
-		users.add(new User("joza", "geslo", "Joza Jozasti", UserRole.User));
+		users.add(new User("admin", "password", "The Admin", UserRole.Admin));
+		users.add(new User("user", "password", "Some User", UserRole.User));
 	}
 
 	private static Map<String, String> sessions = new HashMap<>();

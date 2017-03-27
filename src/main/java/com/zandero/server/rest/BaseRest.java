@@ -7,6 +7,7 @@ import com.zandero.server.service.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
@@ -77,5 +78,19 @@ public class BaseRest {
 			.type(MediaType.APPLICATION_JSON)
 			.cookie(new NewCookie(BackendRequestContext.SESSION_HEADER, sessionId))
 			.build();
+	}
+
+	/**
+	 * Dummy REST to check Admin access / User should not have access to this REST
+	 *
+	 * @return 200 if access granted
+	 */
+	@RolesAllowed("Admin")
+	@GET
+	@Path("/admin")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response checkAdmin() {
+		// checks if admin has access
+		return Response.ok().build();
 	}
 }
