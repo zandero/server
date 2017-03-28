@@ -94,7 +94,7 @@ public class BaseRestTest extends GuiceTest {
 		// try accessing /admin REST ... should not be granted
 		response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/admin")
+			.target(ROOT_URL + "/rest/user/private")
 			.request()
 			.header(BackendRequestContext.SESSION_HEADER, sessionId)
 			.get();
@@ -127,12 +127,30 @@ public class BaseRestTest extends GuiceTest {
 		// try accessing /admin REST ... should not be granted
 		response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/admin")
+			.target(ROOT_URL + "/rest/user/private")
 			.request()
 			.header(BackendRequestContext.SESSION_HEADER, sessionId)
 			.get();
 
 		// access is granted
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
+	}
+
+	@Test
+	public void restNotFoundTest() {
+
+		// login
+		Response response = new ResteasyClientBuilder()
+			.build()
+			.target(ROOT_URL + "/rest/user/missing")
+			.request()
+			.get();
+
+		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());
+
+		// get error
+		RestException exception = response.readEntity(RestException.class);
+		assertEquals("RESTEASY003210: Could not find resource for full path: http://localhost:4444/rest/user/missing", exception.getMessage());
+		assertEquals(HttpStatus.SC_NOT_FOUND, exception.getCode());
 	}
 }

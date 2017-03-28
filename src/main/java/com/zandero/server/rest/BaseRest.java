@@ -17,8 +17,7 @@ import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
 /**
- * Simple REST API to test RestFiltering ...
- * each REST call is for a different test
+ * Simple REST API to illustrate how it is done ...
  */
 
 @Path("/user")
@@ -87,7 +86,7 @@ public class BaseRest {
 	 */
 	@RolesAllowed("Admin")
 	@GET
-	@Path("/admin")
+	@Path("/private")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response checkAdmin() {
 		// checks if admin has access
