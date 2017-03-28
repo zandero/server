@@ -39,8 +39,12 @@ GET http://localhost:4444/rest/user/login?user=user&password=password
 GET http://localhost:4444/rest/user/login?user=admin&password=password
 ```
 
-The response will return a session in the 'X-SessionId' cookie.
-Call the following REST with X-SessionId header:
+#### Read session id
+The response will return a session in the `X-SessionId` cookie.
+Call the following REST with `X-SessionId` header:
+
+
+#### Make call to 'private' RESTs
 ```
 GET http://localhost:4444/rest/user/info
 ```
