@@ -16,6 +16,8 @@ public class UserJSON {
 
 	public UserRole role;
 
+	public String token;
+
 	private UserJSON() {}
 
 	public UserJSON(User user) {
@@ -23,5 +25,10 @@ public class UserJSON {
 		name = user.getFullName();
 		userName = user.getUsername();
 		role = user.getRole();
+	}
+
+	public UserJSON setToken(String value) {
+		token = value;
+		return this;
 	}
 }

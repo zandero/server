@@ -27,7 +27,7 @@ public class BaseRestTest extends GuiceTest {
 		// no session ...
 		Response response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/info")
+			.target(ROOT_URL + "/rest/info")
 			.request()
 			.get();
 
@@ -36,9 +36,9 @@ public class BaseRestTest extends GuiceTest {
 		// login
 		response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/login?username=admin&password=password")
+			.target(ROOT_URL + "/rest/login?username=admin&password=password")
 			.request()
-			.post(null);
+			.get();
 
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 
@@ -58,7 +58,7 @@ public class BaseRestTest extends GuiceTest {
 		// use cookie in call to /info
 		response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/info")
+			.target(ROOT_URL + "/rest/info")
 			.request()
 			.header(BackendRequestContext.SESSION_HEADER, sessionId)
 			.get();
@@ -80,9 +80,9 @@ public class BaseRestTest extends GuiceTest {
 		// login
 		Response response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/login?username=user&password=password")
+			.target(ROOT_URL + "/rest/login?username=user&password=password")
 			.request()
-			.post(null);
+			.get();
 
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 
@@ -94,7 +94,7 @@ public class BaseRestTest extends GuiceTest {
 		// try accessing /admin REST ... should not be granted
 		response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/private")
+			.target(ROOT_URL + "/rest/private")
 			.request()
 			.header(BackendRequestContext.SESSION_HEADER, sessionId)
 			.get();
@@ -113,9 +113,9 @@ public class BaseRestTest extends GuiceTest {
 		// login
 		Response response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/login?username=admin&password=password")
+			.target(ROOT_URL + "/rest/login?username=admin&password=password")
 			.request()
-			.post(null);
+			.get();
 
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 
@@ -127,7 +127,7 @@ public class BaseRestTest extends GuiceTest {
 		// try accessing /admin REST ... should not be granted
 		response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/private")
+			.target(ROOT_URL + "/rest/private")
 			.request()
 			.header(BackendRequestContext.SESSION_HEADER, sessionId)
 			.get();
@@ -142,7 +142,7 @@ public class BaseRestTest extends GuiceTest {
 		// login
 		Response response = new ResteasyClientBuilder()
 			.build()
-			.target(ROOT_URL + "/rest/user/missing")
+			.target(ROOT_URL + "/rest/missing")
 			.request()
 			.get();
 
@@ -150,7 +150,7 @@ public class BaseRestTest extends GuiceTest {
 
 		// get error
 		RestException exception = response.readEntity(RestException.class);
-		assertEquals("RESTEASY003210: Could not find resource for full path: http://localhost:4444/rest/user/missing", exception.getMessage());
+		assertEquals("RESTEASY003210: Could not find resource for full path: http://localhost:4444/rest/missing", exception.getMessage());
 		assertEquals(HttpStatus.SC_NOT_FOUND, exception.getCode());
 	}
 }

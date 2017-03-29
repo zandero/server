@@ -3,6 +3,7 @@ package com.zandero.server.context;
 import com.zandero.rest.context.BaseRequestContext;
 import com.zandero.server.entities.User;
 import com.zandero.server.service.SessionService;
+import org.jboss.resteasy.plugins.guice.RequestScoped;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import java.security.Principal;
 /**
  *
  */
+@RequestScoped
 public class BackendRequestContext extends BaseRequestContext {
 
 	public static final String SESSION_HEADER = "X-SessionId";

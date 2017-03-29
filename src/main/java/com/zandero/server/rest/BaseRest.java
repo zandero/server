@@ -11,7 +11,10 @@ import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
@@ -20,7 +23,7 @@ import javax.ws.rs.core.Response;
  * Simple REST API to illustrate how it is done ...
  */
 
-@Path("/user")
+@Path("/")
 @Singleton
 public class BaseRest {
 
@@ -37,6 +40,7 @@ public class BaseRest {
 		sessions = sessionService;
 		ctxProvider = contextProvider;
 	}
+
 
 	/**
 	 * Returns logged in user if any
@@ -64,7 +68,7 @@ public class BaseRest {
 	 * @param password password
 	 * @return logged in user with session cookie, or throws exception in case username or password is invalid
 	 */
-	@POST
+	@GET
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(@QueryParam("username") String username, @QueryParam("password") String password) {
@@ -73,7 +77,8 @@ public class BaseRest {
 		User user = sessions.get(sessionId);
 
 		log.info("Login of: '" + user.getFullName() + "' successful!");
-		return Response.ok(new UserJSON(user))
+		return Response.ok(new UserJSON(user).setToken(sessionId))
+			.header(BackendRequestContext.SESSION_HEADER, sessionId)
 			.type(MediaType.APPLICATION_JSON)
 			.cookie(new NewCookie(BackendRequestContext.SESSION_HEADER, sessionId))
 			.build();
@@ -90,6 +95,7 @@ public class BaseRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response checkAdmin() {
 		// checks if admin has access
-		return Response.ok().build();
+		User user = ctxProvider.get().getUser();
+		return Response.ok(new UserJSON(user)).build();
 	}
 }

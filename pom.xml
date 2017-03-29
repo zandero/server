@@ -147,14 +147,12 @@
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
             <version>${version.jackson}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson2-provider</artifactId>
             <version>${version.resteasy}</version>
-            <scope>test</scope>
         </dependency>
         <!-- End of Jackson -->
 

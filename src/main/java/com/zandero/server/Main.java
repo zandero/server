@@ -35,6 +35,7 @@ public class Main {
 		try {
 
 			AbstractModule[] modules = new AbstractModule[] {
+				new org.jboss.resteasy.plugins.guice.ext.RequestScopeModule(), // bind appropriate RequestScope
 				new BaseRestModule()
 			};
 

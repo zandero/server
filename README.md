@@ -20,7 +20,7 @@ java -jar server-1.0.jar --port 8080
 
 ## Test 
 ```
-GET http://localhost:4444/rest/user/echo
+GET http://localhost:4444/rest/echo
 ```
 
 ### Security
@@ -34,9 +34,9 @@ A dummy session service knows only two users:
 
 #### Log in with 'user' or 'admin'
 ```
-GET http://localhost:4444/rest/user/login?user=user&password=password
+GET http://localhost:4444/rest/login?user=user&password=password
 
-GET http://localhost:4444/rest/user/login?user=admin&password=password
+GET http://localhost:4444/rest/login?user=admin&password=password
 ```
 
 #### Read session id
@@ -46,9 +46,9 @@ Call the following REST with `X-SessionId` header:
 
 #### Make call to 'private' RESTs
 ```
-GET http://localhost:4444/rest/user/info
+GET http://localhost:4444/rest/info
 ```
-Only 'admin' has access to following REST API:
+Only **admin** has access to following REST API:
 ```
-GET http://localhost:4444/rest/user/private
+GET http://localhost:4444/rest/private
 ```

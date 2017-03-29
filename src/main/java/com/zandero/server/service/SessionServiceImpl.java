@@ -25,8 +25,8 @@ public class SessionServiceImpl implements SessionService {
 	@Override
 	public String login(String username, String password) {
 
-		Assert.notNullOrEmptyTrimmed(username, "Missing username");
-		Assert.notNullOrEmptyTrimmed(password, "Missing password");
+		Assert.notNullOrEmptyTrimmed(username, "Missing 'username'");
+		Assert.notNullOrEmptyTrimmed(password, "Missing 'password'");
 
 		User found = getUser(username);
 
