@@ -87,7 +87,7 @@
 
         <dependency>
             <groupId>com.zandero</groupId>
-            <artifactId>rest</artifactId>
+            <artifactId>rest.events</artifactId>
             <version>${version.zandero}</version>
         </dependency>
 
