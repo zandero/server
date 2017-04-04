@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>server</artifactId>
+    <artifactId>server.jetty</artifactId>
     <groupId>com.zandero</groupId>
     <version>1.0</version>
     <packaging>jar</packaging>
@@ -24,8 +24,8 @@
 
     <scm>
         <url>https://github.com/Zandero/server</url>
-        <connection>scm:git:git://github.com/Zandero/server.git</connection>
-        <developerConnection>scm:git:git@github.com/Zandero/server.git</developerConnection>
+        <connection>scm:git:git://github.com/Zandero/server.jetty.git</connection>
+        <developerConnection>scm:git:git@github.com/Zandero/server.jetty.git</developerConnection>
     </scm>
 
     <developers>
