@@ -8,13 +8,13 @@ mvn clean install
 
 ## Run
 ```
-java -jar server-1.0.jar
+java -jar server-jetty-1.0.jar
 ```
 
 or
 
 ```
-java -jar server-1.0.jar --port 8080
+java -jar server-jetty-1.0.jar --port 8080
 ```
 
 
