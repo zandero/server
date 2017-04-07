@@ -34,9 +34,9 @@ A dummy session service knows only two users:
 
 #### Log in with 'user' or 'admin'
 ```
-GET http://localhost:4444/rest/login?user=user&password=password
+GET http://localhost:4444/rest/login?username=user&password=password
 
-GET http://localhost:4444/rest/login?user=admin&password=password
+GET http://localhost:4444/rest/login?username=admin&password=password
 ```
 
 #### Read session id
